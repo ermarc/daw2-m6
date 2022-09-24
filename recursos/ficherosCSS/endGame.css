@@ -1,0 +1,19 @@
+#abecedari, #failedLettersTracked, #wordStrip, #failStatus {
+    animation: animMenuOut 0.3s forwards;
+}
+
+.menuButton {
+    transform: scale(0);
+    animation: animMenuIn 0.3s forwards;
+    animation-delay: 4s;
+}
+
+#endGameMessage {
+    transform: scale(1);
+    animation: animRespuesta 3s;
+    animation-delay: 0.3s;
+}
+
+body {
+    animation: textColorFull 3s linear;
+}
