@@ -1,0 +1,17 @@
+body {
+    background-color: rgb(76, 24, 125);
+    animation: switchColorToRed 0.3s forwards;
+}
+
+#confirmDelete, #exitDelete, #deleteWarning {
+    transform: scale(0);
+    animation: animMenuIn 0.2s forwards;
+}
+
+@keyframes switchColorToRed {
+    from {
+        background-color: rgb(76, 24, 125);
+    } to {
+        background-color: rgb(0, 0, 0);
+    }
+}
