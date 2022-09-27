@@ -1,0 +1,11 @@
+#primero {
+    animation: desvanecer 1s forwards;
+}
+
+@keyframes desvanecer {
+    from {
+        opacity: 100%;
+    } to {
+        opacity: 0%;
+    }
+}
