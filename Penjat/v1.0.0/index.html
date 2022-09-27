@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/> 
+        <title>Prueba de Javascript</title>
+        <link rel="stylesheet" href="styles.css"/>
+    </head>
+    <body>
+        <!-- Sección que combina el título introductorio, la cabeza del demonio y sus manos -->
+        <h2 class="titulo">¡Bienvenido al Ahorcado!<br/>¿Preparado para morir?</h2>
+        <img src="recursos/imagenes/dibujo.png" class="cabeza"/>
+        <div class="manos">
+            <img src="recursos/imagenes/mano_der.png" class="mano" id="left"/>
+            <img src="recursos/imagenes/mano_izq.png" class="mano" id="right"/>
+        </div>
+
+        <!-- Sección de confirmación o denegación en el menú inicial del juego + mensaje introductorio -->
+        <button class="confirmButton" id="button_pos" onclick="clearButtonsIntro('pos')">Sí</button>
+        <button class="confirmButton" id="button_neg" onclick="clearButtonsIntro('neg')">No</button>
+        <h2 class="respuesta">sample</h2>
+
+        <!-- Sección de selección de opción en el menú contextual del juego -->
+        <button class="menuButton" id="button_play" onclick="clearButtonsMenu('play')">Empezar partida</button>
+        <button class="menuButton" id="button_stats" onclick="clearButtonsMenu('stats')">Consultar estadísticas</button>
+        <button class="menuButton" id="button_music" onclick="clearButtonsMenu('delete')">Borrar datos</button>
+
+        <!-- Sección de nueva partida. Incluye introducción de nuevo texto, mensaje recopilatorio de fallos,
+        imagen representativa de la cantidad de fallos, 'div' con botones correspondientes a las letras disponibles,
+        contenedor de texto por resolver y mensaje de fin de juego -->
+        <h2 id="wordPromptText">Introduce una palabra o frase para resolver</h2>
+        <input id="wordPrompt" type="text"></input>
+        <button id="wordPromptConfirm" onclick="novaPartida()">Confirmar</button>
+        <div id="jocPenjat"></div>
+        <div id="abecedari"></div>
+        <h2 id="failedLettersTracked"></h2>
+        <pre id="wordStrip"></pre>
+        <img id="imatgePenjat" src="recursos/imagenes/imgColgado/penjat_0.png">
+        <img id="restartGame" onclick="resetGame()" src="recursos/imagenes/restart.png"></button>
+        <h2 id="endGameMessage"></h2>
+
+        <!-- Sección de mensajería de estadísticas + botón de salida -->
+        <h3 id="statsMessage">¡Bienvenido/a a tu vitrina! Aquí podrás consultar tus estadísticas.<br><br>
+                                    Total de partidas jugadas: 0<br>
+                                    Total de partidas ganadas: 0, representando el 0% de partidas.<br>
+                                    Total de partidas perdidas: 0, representando el 0% de partidas.</h3>
+        <button id="closeStats" onclick="closeStats()">Cerrar</button>
+
+        <!-- Sección de avisos para antes de borrar los datos insertados en LocalStorage -->
+        <h3 id="deleteWarning">¡Aviso! Presionando el botón de abajo eliminarás todo tu progreso hasta ahora.<br>¿Seguro que quieres continuar?</h3>
+        <button id="confirmDelete" onclick="deleteSaveData()">Confirmar</button>
+        <button id="exitDelete" onclick="closeDeleteSection()">Cancelar</button>
+
+        <!-- Script JavaScript por donde se ejecutan las principales operaciones (consultar comentarios dentro) -->
+        <script src="ariza_marc.js"></script>
+    </body>
+    <footer>
+        <pre></p> v1.0.0</pre>
+    </footer>
+</html>

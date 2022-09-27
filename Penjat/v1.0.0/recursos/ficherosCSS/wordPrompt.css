@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(76, 24, 125);
+    animation: switchColorToGreen 0.3s forwards;
+}
+
+#wordPrompt {
+    margin-top: 135vh;
+    width: 120vh;
+    height: 10vh;
+    border: 2vh solid grey;
+    border-radius: 2vh;
+    background-color: darkgrey;
+    color: rgb(17, 28, 28);
+    font-size: 4.5vh;
+    font-family: Consolas;
+}
+
+#wordPromptText{
+    transform: scale(0);
+    margin-top: 55vh;
+    color: rgb(17, 28, 28);
+}
+
+#wordPromptConfirm {
+    margin-top: 170vh;
+    width: 30vh;
+    background-color: rgb(43, 214, 0);
+    border: 1.3vh solid darkgreen;
+    border-radius: 2vh;
+    font-size: 3vh;
+    padding: 2vh;
+    color: darkgreen;
+    box-shadow: 1vh 1vh 1vh rgb(43, 214, 0);
+}
+
+#wordPromptConfirm, #wordPrompt, #wordPromptText {
+    animation: animMenuIn 0.2s forwards;
+}

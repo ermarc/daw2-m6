@@ -1,0 +1,72 @@
+#abecedari, #failedLettersTracked, #wordStrip, #imatgePenjat, #restartGame {
+    animation: animMenuOut 0.3s forwards;
+}
+
+.menuButton {
+    transform: scale(0);
+    animation: animMenuIn 0.3s forwards;
+    animation-delay: 4s;
+}
+
+#endGameMessage {
+    transform: scale(1);
+    animation: animEndGameMessage 3s;
+    animation-delay: 0.3s;
+}
+
+body {
+    animation: textColorFull 2.7s linear;
+    animation-delay: 0.3s;
+}
+
+/*
+@keyframes animEndGameMessage {
+    0% {
+        opacity: 0%;
+        top: 61.25%
+    }
+    13% {
+        opacity: 100%;
+        top: 47.25%;
+    }
+    20% {
+        top: 50%;
+    }
+    80% {
+        top: 50%;
+    }
+    87% {
+        opacity: 100%;
+        top: 53.25%;
+    }
+    99.9999% {
+        opacity: 0%;
+        top: 37.5%;
+    }
+}
+*/
+
+@keyframes animEndGameMessage {
+    0% {
+        opacity: 0%;
+        top: 70%;
+    }
+    13% {
+        opacity: 100%;
+        top: 27%;
+    }
+    20% {
+        top: 34%;
+    }
+    80% {
+        top: 34%;
+    }
+    87% {
+        opacity: 100%;
+        top: 41%;
+    }
+    99.9999% {
+        opacity: 0%;
+        top: 5%;
+    }
+}

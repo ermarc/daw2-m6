@@ -1,0 +1,503 @@
+body {
+    --colorFuente: rgb(239, 234, 171);
+    --colorTexto: rgb(12, 12, 12);
+    background-color: rgb(76, 24, 125);
+    /*
+    animation: textColorFull 0.5s infinite;
+    */
+    display: flex;
+    justify-content: center;
+}
+
+@font-face {
+    font-family: miFuente;
+    src: url("./recursos/font.otf");
+}
+
+h2, #wordStrip {
+    font-family: miFuente;
+    color: var(--colorTexto);
+    margin-left: 4.5vh;
+    font-size: 4vh;
+    position: fixed;
+    text-shadow: 0 0.57vh 0 var(--colorFuente), 0.57vh 0 0 var(--colorFuente), -0.57vh 0 0 var(--colorFuente), 0 -0.57vh var(--colorFuente), -0.57vh -0.57vh 0 var(--colorFuente), 0.57vh 0.57vh 0 var(--colorFuente);
+}
+
+#singleLetter {
+    transform: scale(0);
+}
+
+#statsMessage {
+    transform: scale(0);
+    color: rgb(60,60,60);
+    font-size: 3vh;
+    position: fixed;
+    background-color: rgb(255, 192, 75);
+    border: 2vh solid orange;
+    border-radius: 3vh;
+    margin-top: 35vh;
+    font-family: Consolas;
+    padding: 3vh;
+}
+
+#endGameMessage {
+    top: 3%;
+    opacity: 0%;
+    z-index: 2;
+    font-size: 6vh;
+}
+
+#imatgePenjat {
+    position: fixed;
+    transform: scale(0);
+    width: 7vh;
+    top: 22%;
+}
+
+#closeStats {
+    position: fixed;
+    transform: scale(0);
+    width: 27vh;
+    height: 8vh;
+    color: darkgreen;
+    font-family: consolas;
+    font-size: 4vh;
+    background-color: rgb(0, 189, 0);
+    border: 0.6vh solid darkgreen;
+    border-radius: 2vh;
+    margin-top: 75vh;
+    box-shadow: 1vh 1vh 1.5vh green;
+}
+
+
+#failedLettersTracked {
+    font-size: 3vh;
+    opacity: 0%;
+    text-shadow: 0 0.42vh 0 var(--colorFuente), 0.42vh 0 0 var(--colorFuente), -0.42vh 0 0 var(--colorFuente), 0 -0.42vh var(--colorFuente), -0.42vh -0.42vh 0 var(--colorFuente), 0.42vh 0.42vh 0 var(--colorFuente);
+}
+
+.titulo {
+    align-self: center;
+    margin-top: 72.5vh;
+    opacity: 100%;
+    z-index: 2;
+    animation: animIntro 1.25s forwards;
+}
+
+.respuesta {
+    opacity: 0%;
+    margin-top: 122.5vh;
+    align-self: center;
+}
+
+.cabeza {
+    position: fixed;
+    rotate: 360deg;
+    width: 65vh;
+    top: 15%;
+    animation: dibujoAnim 1s forwards;
+    justify-content: center;
+}
+
+#restartGame {
+    transform: scale(0);
+    position: fixed;
+    top: 21%;
+    right: 35%;
+    background-color: yellow;
+    border: 1vh solid orange;
+    border-radius: 2vh;
+    width: 5vh;
+    padding: 1vh;
+}
+
+.mano {
+    width: 24.5vh;
+    transform: scale(0);
+    rotate: 180deg;
+}
+
+.manos {
+    top: 68%;
+    position: fixed;
+    margin-right: 95vh;
+}
+
+#left {
+    position: fixed;
+    animation: dibujoSpawnHands 0.2s forwards, movimientoManoIzquierda 1.5s infinite linear;
+    animation-delay: 1s, 1.3s;
+}
+
+#right {
+    margin-left: 71vh;
+    position: fixed;
+    animation: dibujoSpawnHands 0.2s forwards, movimientoManoDerecha 1.5s infinite linear;
+    animation-delay: 1s, 1.3s;
+}
+
+.confirmButton {
+    position: fixed;
+    margin-top: 175vh;
+    width: 17.5vh;
+    height: 10vh;
+    transform: scale(0);
+    font-family: consolas;
+    font-size: 4vh;
+    animation: dibujoSpawnHands 0.4s forwards;
+    animation-delay: 3s;
+    border-radius: 2vh;
+    padding: 0px;
+    align-self: center;
+}
+
+#wordPrompt, #wordPromptConfirm {
+    position: fixed;
+    transform: scale(0);
+    align-self: center;
+}
+
+#wordPromptText, #wordStrip {
+    transform: scale(0);
+    align-self: center;
+}
+
+#button_pos {
+    margin-left: -25vh;
+    background-color: rgb(52, 236, 5);
+    border: 1vh solid green;
+    color: green;
+    box-shadow: 1vh 1vh 2vh rgb(52, 236, 5);
+}
+
+#button_neg {
+    margin-right: -25vh;
+    background-color: red;
+    border: 1vh solid darkred;
+    color: darkred;
+    box-shadow: 1vh 1vh 2vh red;
+}
+
+.menuButton {
+    position: fixed;
+    border-radius: 2vh;
+    width: 60vh;
+    height: 14vh;
+    transform: scale(0);
+    font-family: Consolas;
+    font-size: 4vh;
+    align-self: center;
+}
+
+#button_play {
+    border: 1vh solid darkgreen;
+    color: darkgreen;
+    background-color: rgb(0, 189, 0);
+    margin-top: 65vh;
+    box-shadow: 1vh 1vh 1.5vh green;
+}
+
+#button_stats {
+    border: 1vh solid orange;
+    color: orange;
+    background-color: rgb(255, 255, 66);
+    box-shadow: 1vh 1vh 1.5vh yellow;
+    margin-top: 100vh;
+}
+
+#button_music {
+    border: 1vh solid darkred;
+    color: darkred;
+    background-color: rgb(255, 56, 56);
+    box-shadow: 1vh 1vh 1.5vh red;
+    margin-top: 135vh;
+}
+
+#deleteWarning {
+    transform: scale(0);
+    color: rgb(66, 58, 58);
+    font-size: 3vh;
+    position: fixed;
+    background-color: rgb(255, 75, 105);
+    border: 2vh solid rgb(219, 15, 15);
+    border-radius: 3vh;
+    margin-top: 35vh;
+    text-align: center;
+    font-family: Consolas;
+    padding: 3vh;
+}
+
+#confirmDelete {
+    position: fixed;
+    transform: scale(0);
+    width: 27vh;
+    height: 8vh;
+    color: darkgreen;
+    font-family: consolas;
+    font-size: 4vh;
+    background-color: rgb(0, 189, 0);
+    border: 0.6vh solid darkgreen;
+    border-radius: 2vh;
+    margin-top: 75vh;
+    margin-right: 30vh;
+    box-shadow: 1vh 1vh 1.5vh green;
+}
+
+#exitDelete {
+    position: fixed;
+    transform: scale(0);
+    width: 27vh;
+    height: 8vh;
+    color: rgb(112, 1, 1);
+    font-family: consolas;
+    font-size: 4vh;
+    background-color: rgb(255, 100, 100);
+    border: 0.6vh solid rgb(112, 1, 1);
+    border-radius: 2vh;
+    margin-top: 75vh;
+    margin-left: 30vh;
+    box-shadow: 1vh 1vh 1.5vh rgb(161, 0, 0);
+}
+
+footer pre {
+    position: fixed;
+    left: 0;
+    bottom: 0vh;
+    font-size: 2vh;
+}
+
+
+@keyframes oldDibujoAnim {
+    0% {
+        transform: scale(0);
+    }
+    10% {
+        transform: scale(1.2);
+        rotate: 360deg;
+    }
+    14% {
+        transform: scale(1);
+    }
+    86% {
+        transform: scale(1);
+        rotate: 360deg;
+    }
+    90% {
+        transform: scale(1.2);
+        rotate: 440deg;
+    }
+    100% {
+        transform: scale(0);
+        rotate: 78deg;
+    }
+}
+
+
+@keyframes movimientoManoIzquierda {
+    0% {
+      transform: translate(0vh,0vh);
+    }
+    25% {
+      transform: translate(2vh,2vh);
+    }
+    50% {
+      transform: translate(0vh,4vh);
+    }
+    75% {
+      transform: translate(-2vh,2vh);
+    }
+    100% {
+      transform: translate(0vh,0vh);
+    }
+}
+
+@keyframes movimientoManoDerecha {
+    0% {
+      transform: translate(0vh,0vh);
+    }
+    25% {
+      transform: translate(-2vh,2vh);
+    }
+    50% {
+      transform: translate(0vh,4vh);
+    }
+    75% {
+      transform: translate(2vh,2vh);
+    }
+    100% {
+      transform: translate(0vh,0vh);
+    }
+  }
+
+@keyframes dibujoAnim {
+    0% {
+        transform: scale(0);
+        rotate: 78deg;
+    }
+    71.428% {
+        transform: scale(1.2);
+    }
+    100% {
+        rotate: 360deg;
+        transform: scale(1);
+    }
+}
+
+@keyframes animIntro {
+    0% {
+        opacity: 0%;
+    }
+    52% {
+        margin-top: 32.5vh;
+        opacity: 100%;
+    }
+    80% {
+        margin-top: 37.5vh;
+    }
+    100% {
+        margin-top: 37.5vh;
+        opacity: 100%;
+    }
+}
+
+@keyframes dibujoSpawnHands {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+video {
+    position: fixed;
+    width: 120vh;
+    z-index: 5;
+    top: 2.5%;
+}
+
+/*
+@keyframes oldAnimIntro {
+    13% {
+        margin-top: 32.5vh;
+        opacity: 100%;
+    }
+    20% {
+        margin-top: 37.5vh;
+    }
+    80% {
+        margin-top: 37.5vh;
+    }
+    87% {
+        margin-top: 41.5vh;
+        opacity: 100%;
+    }
+    99.99999% {
+        margin-top: 2.5vh;
+        opacity: 0%;
+    }
+    100% {
+        margin-top: 0;
+    }
+}
+
+*/
+
+@keyframes textColor {
+    0% {
+    }
+    6.66666% {
+        color: red;
+    }
+
+    13.3333% {
+        color: blue;
+    }
+    20% {
+        color: yellow;
+    }
+    26.6666% {
+        color: green;
+    }
+    33.3333% {
+        color: fuchsia;
+    }
+    40% {
+        color: red
+    }
+    46.66666% {
+        color: blue
+    }
+    53.3333% {
+        color: yellow
+    }
+    60% {
+        color: green;
+    }
+    66.6666% {
+        color: fuchsia;
+    }
+    73.3333% {
+        color: red
+    }
+    86.6666% {
+        color: blue
+    }
+    93.3333% {
+        color: yellow;
+    }
+    100% {
+        color: green;
+    }
+}
+
+@keyframes textColorFull {
+    0% {
+    }
+    6.66666% {
+        background-color: red;
+    }
+
+    13.3333% {
+        background-color: blue;
+    }
+    20% {
+        background-color: yellow;
+    }
+    26.6666% {
+        background-color: green;
+    }
+    33.3333% {
+        background-color: fuchsia;
+    }
+    40% {
+        background-color: red
+    }
+    46.66666% {
+        background-color: blue
+    }
+    53.3333% {
+        background-color: yellow
+    }
+    60% {
+        background-color: green;
+    }
+    66.6666% {
+        background-color: fuchsia;
+    }
+    73.3333% {
+        background-color: red
+    }
+    86.6666% {
+        background-color: blue
+    }
+    93.3333% {
+        background-color: yellow;
+    }
+    100% {
+        background-color: rgb(76, 24, 125);
+    }
+}
