@@ -1,11 +1,18 @@
 #primero {
-    animation: desvanecer 1s forwards;
+    opacity: 100%;
+    animation: desvanecer 0.5s forwards;
+}
+
+pre {
+    animation: simpleSkyDrop 0.38s forwards linear, continuousBounce 0.18s forwards infinite ease-out alternate;
+    animation-delay: 0s, 0.38s;
 }
 
 @keyframes desvanecer {
-    from {
+    0% {
         opacity: 100%;
-    } to {
+    }
+    100% {
         opacity: 0%;
     }
 }

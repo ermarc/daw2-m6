@@ -13,32 +13,30 @@ function crearAudio() {
 
 function entrarPagina() {
     var entrarPaginaLink = document.createElement("link");
-    entrarPaginaLink.href = "css/entrarPagina.css";
+    entrarPaginaLink.href = "recursos/css/entrarPagina.css";
     entrarPaginaLink.rel = "stylesheet";
     entrarPaginaLink.type = "text/css";
+    document.head.appendChild(entrarPaginaLink);
     setTimeout( function() {
         var borrarDivBlanco = document.getElementById("primero");
-        borrarDivBlanco.remove()
-    }, 1200);
+        borrarDivBlanco.remove();
+    }, 550);
+    crearAudio();
+    setTimeout( function() {
+        crearArchivos();
+    })
 }
 
-function jumpScare() {
-    var crearAudio = document.createElement("audio");
-    crearAudio.autoplay = "autoplay";
-    crearAudio.loop = "loop";
-    crearAudio.id = "nuevoAudio"
-    var crearSource = document.createElement("source");
-    crearSource.src = "recursos/exorcista.mp3";
-    crearSource.type = "audio/mpeg";
+function crearArchivos() {
+    var crearPenjat100 = document.createElement("button");
+    crearPenjat100.onclick =  function() { window.location.href = "Penjat/v1.0.0/index.html" };
+    crearPenjat100.textContent = "Penjat v1.0.0";
+    crearPenjat100.id = "singleButton";
+    document.getElementById("divButtons").appendChild(crearPenjat100);
 
-    document.body.appendChild(crearAudio);
-    document.getElementById("nuevoAudio").appendChild(crearSource);
-
-    var entrarPaginaLink = document.createElement("link");
-    entrarPaginaLink.href = "recursos/css/newer.css";
-    entrarPaginaLink.rel = "stylesheet";
-    entrarPaginaLink.type = "text/css";
-    entrarPaginaLink.id = "tula";
-    document.head.appendChild(entrarPaginaLink);
-
+    var crearPenjatPrimitive = document.createElement("button");
+    crearPenjatPrimitive.onclick =  function() { window.location.href = "Penjat/primitive/index.html" };
+    crearPenjatPrimitive.textContent = "primitive";
+    crearPenjatPrimitive.id = "singleButton";
+    document.getElementById("divButtons").appendChild(crearPenjatPrimitive);
 }
