@@ -8,6 +8,11 @@ pre {
     animation-delay: 0s, 0.38s;
 }
 
+#versionText {
+    animation: desvanecer 0.5s reverse forwards;
+    animation-delay: 1.2s;
+}
+
 @keyframes desvanecer {
     0% {
         opacity: 100%;
