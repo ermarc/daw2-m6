@@ -6,12 +6,11 @@ body {
     image-rendering: pixelated;
 }
 
-pre {
+#titulo {
     transform: scale(1);
     /* animation: expandLoop 1s infinite alternate ease-in-out; */
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    color: red;
-    text-shadow: 0.08vh 0.08vh 0px grey, -0.08vh 0.08vh 0px grey, 0.08vh -0.08vh 0px grey, -0.08vh -0.08vh 0px grey;
+    font-family: fuenteImpact;
+    text-shadow: 0.08vh 0.08vh 0.5vh yellow, -0.08vh 0.08vh 0.5vh yellow, 0.08vh -0.08vh 0.5vh yellow, -0.08vh -0.08vh 0.5vh yellow;
     font-display: solid;
     font-size: 14vh;
     white-space: pre-line;
@@ -20,7 +19,7 @@ pre {
 
 #divButtons {
     top: 35%;
-    width: 15vh;
+    width: 33vh;
     position: fixed;
     display: flex;
     flex-wrap: wrap;
@@ -29,9 +28,9 @@ pre {
 #versionText {
     opacity: 0;
     bottom: 0;
-    left: 2%;
+    left: 1%;
     font-size: 2vh;
-    font-family: consolas;
+    font-family: fuenteConsolasNormal;
     position: fixed;
 }
 
@@ -50,13 +49,14 @@ pre {
     background-color: white;
 }
 
-button {
-    width: 13vh;
-    height: 10vh;
+#singleButton {
+    width: 33vh;
+    height: 11vh;
     border: 1vh solid rgb(66, 66, 66);
     font-size: 2vh;
     border-radius: 2vh;
     background-color: grey;
+    font-family: fuenteConsolasNormal;
     color: rgb(66, 66, 66);
 }
 
@@ -76,7 +76,7 @@ button {
     color: darkred;
     border: 2vh solid darkred;
     border-radius: 2vh;
-    font-family: consolas;
+    font-family: fuenteConsolasNormal;
     font-size: 2.5vh;
 }
 
@@ -84,7 +84,7 @@ button {
     width: 15vh;
     height: 9vh;
     border-radius: 2.5vh;
-    font-family: consolas;
+    font-family: fuenteConsolasNormal;
     margin-left: 18.5vh;
 }
 
@@ -105,65 +105,12 @@ button {
     border: 1vh solid darkred;
 }
 
-@keyframes expandLoop {
-    from {
-        transform: scale(1);
-    } to {
-        transform: scale(1.5);
-    }
+@font-face {
+    font-family: fuenteImpact;
+    src: url("../fuenteImpact.ttf");
 }
 
-/*
-@keyframes skyDrop {
-    0% {
-        transform: translate(0vh, -100vh);
-    }
-    15% {
-        transform: translate(0vh, -100vh);
-    } 
-    35% {
-        transform: translate(0vh, 0vh);
-    }
-    51% {
-        transform: translate(0vh, -60vh);
-    }
-    65% {
-        transform: translate(0vh, 0vh);
-    }
-    74% {
-        transform: translate(0vh, -36vh);
-    }
-    81% {
-        transform: translate(0vh, -21vh);
-    }
-    88% {
-        transform: translate(0vh, 0vh);
-    }
-    93% {
-        transform: translate(0vh, -3vh);
-    }
-    95.5% {
-        transform: translate(0vh, 0vh);
-    }
-    100% {
-        transform: translate(0vh, 0vh);
-    }
-}
-*/
-
-@keyframes simpleSkyDrop {
-    from {
-        transform: translate(0vh, -100vh);
-    } to {
-        transform: translate(0vh, 0vh);
-    }
-}
-
-@keyframes continuousBounce {
-    from {
-        transform: translate(0vh, 0vh);
-    }
-    to {
-        transform: translate(0vh, -5vh);
-    }
+@font-face {
+    font-family: fuenteConsolasNormal;
+    src: url("../fuenteConsolasNormal.TTF");
 }
