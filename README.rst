@@ -7,7 +7,7 @@ Explicación general
 
 - En este repositorio se almacenan todos mis trabajos relacionados con el módulo seis del segundo año del ciclo de Desarrollo de Aplicaciones Web.
 - A continuación expondré una breve descripción de cada uno de mis trabajos hasta la fecha.
-- IGNORAR POR FAVOR EL DOCUMENTO "index.html" Y LA CARPETA "recursos", SON ÚNICAMENTE USADOS PARA UNA WEB EXPERIMENTAL EN GITHUB PAGES.
+- IGNORAR POR FAVOR EL DOCUMENTO "index.html" Y LA CARPETA "recursos" ENCONTRADOS EN EL DIRECTORIO RAÍZ DEL REPOSITORIO, SON ÚNICAMENTE USADOS PARA UNA WEB EXPERIMENTAL EN GITHUB PAGES.
 
 
 Joc del Penjat
