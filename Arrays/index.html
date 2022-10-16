@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Pokédex Made in China</title>
+	<link rel="icon" href="recursos/favicon.ico">
+	<link href="recursos/css/styles.css" rel="stylesheet" type="text/css">
+	<link href="recursos/css/hide-Chart.css" rel="stylesheet" type="text/css" id="chartCSS">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+	<div id="programButtons">
+		<button onclick="refreshPage()">Refrescar página</button>
+		<!-- <button onclick="changeSort()" id="sortButton">Ordenar por número</button>
+		<button onclick="printList('asc')" id="printButton">Ordenar ascendente</button> -->
+		<button onclick="calcMitjana()">Calcular media</button>
+		<button onclick="printList(true)">Mostrar tabla</button>
+		<button onclick="printChart()" id="showChartButton">Mostrar estadísticas</button>
+		<!-- <button onclick="searchResult()" id="buscador">Buscar resultado</button> -->
+		<input type="text" id="txtSearch" onclick="searchBarInteraction()" autocomplete="off" placeholder="Buscar..."></input> 
+	</div>
+
+	<div id="resultat"></div>
+
+	<div id="promptMessage" style="transform: scale(0); opacity: 0;">
+		<pre id="innerPromptMessage" style="transform: scale(0);"></pre>
+	</div>
+
+	<audio id="openMenu">
+		<source src="recursos/sound/openMenu.mp3" type="audio/mpeg">
+	</audio>
+
+	<audio id="confirmSound">
+		<source src="recursos/sound/confirmSound.mp3" type="audio/mpeg">
+	</audio>
+
+	<audio id="textSound">
+		<source src="recursos/sound/textSound.mp3" type="audio/mpeg">
+	</audio>
+
+	<div class="chart-container" style="position: relative; width:700px">
+		<canvas id="myChart"></canvas>
+	</div>
+</body>
+
+<footer>
+	<pre> v0.10.2</pre>
+	<script src="js/script.js"></script>
+</footer>
+
+</html>

@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    left: 0;
+    font-family: pokeFuente;
+    text-shadow: 0.18vh 0.18vh rgb(161, 161, 161);
+    color: white;
+}
+
+body {
+    background-image: url("../img/fondo.gif");
+    background-size: 4vh;
+}
+
+#programButtons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#programButtons button, input {
+    padding: 1vh;
+    width: 23vh;
+    height: 11vh;
+    text-align: center;
+    box-sizing: border-box;
+    background-image: url("../img/fondoBotonSmall.gif");
+    background-size: 1vh;
+    border: 0.7vh solid rgb(179, 179, 179);
+    box-shadow: 0.3vh 0.3vh 1vh white;
+    border-radius: 3.5vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
+    margin-top: 2vh;
+    font-size: 3vh;
+}
+
+input::placeholder {
+    opacity: 1;
+}
+
+input:focus::placeholder {
+    opacity: 0;
+}
+
+#resultat {
+    display: flex;
+    justify-content: center;
+    margin-top: 3vh;
+}
+
+td {
+    text-align: center;
+    border: 0.5vh solid rgb(179, 179, 179);
+    background-color: black;
+    width: 20vh;
+    height: 15vh;
+}
+
+
+img {
+    width: 10vh;
+    animation: ease-out;
+}
+
+img:hover {
+    animation: expandirImagen 0.2s forwards;
+}
+
+pre {
+    font-size: 3vh;
+}
+
+.chart-container {
+    margin: auto;
+    max-width: 75vh;
+    min-width: 75vh;
+}
+
+#myChart {
+    position: absolute;
+    top: 5vh;
+    background-color: white;
+    border: 1vh solid black;
+    border-radius: 3vh;
+}
+
+#promptMessage {
+    position: fixed;
+    text-align: center;
+    backdrop-filter: blur(1vh);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#innerPromptMessage {
+    background-image: url("../img/fondoBotonSmall.gif");
+    background-size: 1vh;
+    padding: 6vh;
+    max-width: 90vh;
+    border: 2vh solid rgb(179, 179, 179);
+    border-radius: 5vh;
+    font-size: 4vh;
+    white-space: normal;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+}
+
+@keyframes expandirImagen {
+    from {
+        transform: scale(1);
+    } to {
+        transform: scale(1.15);
+    }
+}
+
+@keyframes expandirBoton {
+    from {
+        width: 23vh;
+    }
+    to {
+        width: 55vh;
+    }
+}
+
+@keyframes smoothOpacity {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+@keyframes fullExpand {
+    0% {
+        transform: scale(0);
+    }
+    80% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@font-face {
+    font-family: pokeFuente;
+    src: url("../pokeFuente.ttf");
+}
