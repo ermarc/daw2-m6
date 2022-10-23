@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<meta charset="UTF-8">
@@ -18,7 +18,7 @@
 		<!-- <button onclick="changeSort()" id="sortButton">Ordenar por número</button>
 		<button onclick="printList('asc')" id="printButton">Ordenar ascendente</button> -->
 		<button onclick="calcMitjana()">Calcular media</button>
-		<button onclick="printList(true)">Mostrar tabla</button>
+		<button onclick="printList(true, true)">Mostrar tabla</button>
 		<button onclick="printChart()" id="showChartButton">Mostrar estadísticas</button>
 		<!-- <button onclick="searchResult()" id="buscador">Buscar resultado</button> -->
 		<input type="text" id="txtSearch" onclick="searchBarInteraction()" autocomplete="off" placeholder="Buscar..."></input> 
@@ -30,6 +30,12 @@
 		<pre id="innerPromptMessage" style="transform: scale(0);"></pre>
 	</div>
 
+	
+	<div id="orderMessageDiv" style="opacity: 0">
+		<h1 id="orderMessage">missingno</h1>
+	</div>
+	
+	
 	<audio id="openMenu">
 		<source src="recursos/sound/openMenu.mp3" type="audio/mpeg">
 	</audio>
@@ -42,13 +48,15 @@
 		<source src="recursos/sound/textSound.mp3" type="audio/mpeg">
 	</audio>
 
-	<div class="chart-container" style="position: relative; width:700px">
-		<canvas id="myChart"></canvas>
+	<div id="chartDiv" style="transform: scale(0); opacity: 0;">
+		<div id="chart-container" style="position: relative; width:700px">
+			<canvas id="myChart" style="transform: scale(0);"></canvas>
+		</div>
 	</div>
 </body>
 
 <footer>
-	<pre> v0.10.2</pre>
+	<pre> v0.14</pre>
 	<script src="js/script.js"></script>
 </footer>
 

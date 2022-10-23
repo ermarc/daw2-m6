@@ -1,26 +1,32 @@
 let dades;
-let pokeArray;
+let pokeArray = [];
 let sortOption;
 let showChart = false;
+let sortMessage = "";
+let myChart;
 
-let arrayLabels = [];
-let arrayDadesGraf = [];
+let arrayLabels;
+let arrayDadesGraf;
 let backgroundColor = [];
 let borderColor = [];
 
 fetch("js/data/pokemon.json").then((response) => response.json()).then((data) => {
 	dades = data.pokemon;
-	crearArrayLabels();
-	crearDadesGrafs();
-	crearChart();
-	pokeArray = [];
 });
 
 document.getElementById('txtSearch').addEventListener('input', (noLeasEsto) => { pokeFilter(document.getElementById('txtSearch').value); });
 
 function rearrangePokeArray() {
 	pokeArray = [];
-	dades.forEach(item => {pokeArray.push([item.num, item.name, item.img, item.weight, item.type])});
+	dades.forEach(item => {
+		pokeArray.push({
+			num: item.num,
+			name: item.name,
+			img: item.img,
+			weight: item.weight,
+			type: item.type
+		})
+	});
 }
 
 function pokeFilter(subName) {
@@ -28,26 +34,42 @@ function pokeFilter(subName) {
 	checkForTableAndDelete();
 	searchBarInteraction();
 	if (subName != "") {
+		var documentoTexto = document.getElementById("orderMessageDiv");
+		documentoTexto.style.animation = "";
+		documentoTexto.style.opacity = '0';
+		deleteSetTimers();
 		let customArray = [];
 		dades.forEach(item => {
 			if (item["name"].toLowerCase().includes(subName.toLowerCase())) customArray.push([item.num, item.name, item.img, item.weight, item.type]) 
 		});
+		changeSortMessage("skip", true);
 		pokeArray = [];
-		customArray.forEach(item => {pokeArray.push([item[0], item[1], item[2], item[3], item[4]]); })
+		customArray.forEach(item => {pokeArray.push({	num: item[0], 
+														name: item[1],
+														img: item[2],
+														weight: item[3],
+														type: item[4]}); })
 		if (pokeArray.length != dades.length) {
-			printList();
+			printList(false, true);
 		}
 	}
 }
 
-function crearDadesGrafs() {
-	for (let i = 0; i < arrayLabels.length; i++) {
-		arrayDadesGraf.push(0);
-	}
+function crearArrayLabels() {
+	arrayLabels = [];
+	arrayDadesGraf = [];
+	pokeArray.forEach(item => {
+		item.type.forEach(type => {
+			if (!arrayLabels.includes(type)) {
+				arrayLabels.push(type);
+				arrayDadesGraf.push(0);
+			}
+		})
+	});
 	for (let i = 0; i < arrayLabels.length; i++) {
 		for (let j = 0; j < pokeArray.length; j++) {
 			for (let z = 0; z < 2; z++) {
-				if (pokeArray[j][4][z] == arrayLabels[i]) {
+				if (pokeArray[j].type[z] == arrayLabels[i]) {
 					arrayDadesGraf[i] += 1;
 				}
 			}
@@ -55,25 +77,15 @@ function crearDadesGrafs() {
 	}
 }
 
-function crearArrayLabels() {
-	rearrangePokeArray();
-	for (let i = 0; i < pokeArray.length; i++) {
-		for (let j = 0; j < 2; j++) {
-			if (!arrayLabels.includes(pokeArray[i][4][j]) && pokeArray[i][4][j] != undefined) {
-				arrayLabels.push(pokeArray[i][4][j]);
-			}
-		}
-	}
-}
-
 function crearChart() {
-	for (let i = 0; i < arrayLabels.length; i++) {
+	crearArrayLabels();
+	arrayLabels.forEach(item => {
 		let randomColor1 = Math.random()*256;
 		let randomColor2 = Math.random()*256;
 		let randomColor3 = Math.random()*256;
-		backgroundColor[i] = 'rgba(' + randomColor1 + ',' + randomColor2 + ',' + randomColor3 + ', 0.65)';
-		borderColor[i] = 'rgb(' + randomColor1 + ',' + randomColor2 + ',' + randomColor3 + ')';
-	}
+		backgroundColor.push('rgba(' + randomColor1 + ',' + randomColor2 + ',' + randomColor3 + ', 0.45)');
+		borderColor.push('rgb(' + randomColor1 + ',' + randomColor2 + ',' + randomColor3 + ')');
+	});
 
 	const pokeDatos = {
 		labels: arrayLabels,
@@ -84,65 +96,44 @@ function crearChart() {
 					borderColor: borderColor,
 				}]
 	};
-	
-	const myChart = new Chart(
+	if (myChart) myChart.destroy();
+	myChart = new Chart(
 		document.getElementById('myChart'),
-		{type: 'polarArea', data: pokeDatos, options: {}}
+		{type: 'polarArea', data: pokeDatos, options: {plugins: {legend: {labels: {font:{size: 15}}}}}}
 	);
 }
 
 function printChart(option) {
-	if (option != 'nohide') {
-		searchBarInteraction('hide');
-	} 
-	if (option != 'nosound') {
-		playConfirmSound();
-	}
-	checkForTableAndDelete();
 
-	var showChartButton = document.getElementById("showChartButton");
-	showChartButton.disabled = true;
-	let message;
-
-	var getChart = document.getElementById("chartCSS");
-	getChart.remove();
-
-	var restoreChart = document.createElement("link");
-	restoreChart.rel = "stylesheet";
-	restoreChart.type = "text/css";
-	restoreChart.id = "chartCSS";
-
-	if (!showChart) {
-		restoreChart.href = "recursos/css/show-Chart.css";
-		message = "Esconder estadísticas";
-	} else {
-		restoreChart.href = "recursos/css/hide-Chart.css";
-		message = "Mostrar estadísticas";
-	}
-	showChart = !showChart;
-
-	document.getElementById("showChartButton").innerHTML = message;
-	document.head.appendChild(restoreChart);
-	showChartButton.disabled = false;
+	if (pokeArray.length != 0) {
+		crearChart();
+		deleteSetTimers();
+		if (option != 'nohide') {
+			searchBarInteraction('hide');
+		} 
+		if (option != 'nosound') {
+			playOpenMenu();
+		}
+		showPromptMessage("", "chartDiv", "myChart");
+	} else showPromptMessage("No hay Pokémon en la tabla.", "promptMessage", "innerPromptMessage");
 }
 
 function hideChart(option) {
 	if (showChart) printChart(option);
 }
 
-function printList(resetTable) {
+function printList(resetTable, opcionPrintSortMessage) {
 	sortOption = "";
 	if (resetTable) {
 		rearrangePokeArray();
 		searchBarInteraction('hide');
 	}
-	sortTable('num');
+	sortTable('num', opcionPrintSortMessage);
 }
 
-function sortTable(respuesta, elemento) {
+function sortTable(respuesta, opcionPrintSortMessage, elemento) {
 	playConfirmSound();
 	checkForTableAndDelete();
-	hideChart('nohide');
 	var tabla = document.createElement("table");
 	secuenciaPrintList(-1, tabla);
 	if (sortOption == respuesta) {
@@ -160,24 +151,99 @@ function sortTable(respuesta, elemento) {
 				break;
 		}
 	}
+	var oldSort = sortOption;
 	sortOption = respuesta;
+	changeSortMessage(oldSort, opcionPrintSortMessage);
 	pokeArray.forEach(item => {secuenciaPrintList(item, tabla)});
 	document.getElementById("resultat").appendChild(tabla);
 }
 
+function changeSortMessage(option, stopPrint) {
+	var documento = document.getElementById("orderMessage");
+	var innerItalicText = document.createElement("pre");
+	var coloredInnerItalicText = document.createElement("pre");
+	documento.innerHTML = "Tabla ordenada por ";
+	innerItalicText.style.fontStyle = "cursive";
+	if (option != 'skip') {
+		var detectState = sortMessage.split(" ");
+		switch (sortOption) {
+			case 'num':
+				innerItalicText.innerHTML = 'número ';
+				break;
+			case 'nam':
+				innerItalicText.innerHTML = 'nombre ';
+				break;
+			case 'wgt':
+				innerItalicText.innerHTML = 'peso ';
+				break;
+		}
+		if (option == sortOption) {
+			coloredInnerItalicText.innerHTML = (detectState[4] == 'ascendente' ? 'descendente' : 'ascendente');
+		} else {
+			coloredInnerItalicText.innerHTML = 'ascendente';
+		} 
+	} else {
+		innerItalicText.innerHTML = 'número';
+		coloredInnerItalicText.innerHTML = 'ascendente';
+		stopPrint = true;
+	}
+	coloredInnerItalicText.style.color = (coloredInnerItalicText.innerHTML == 'ascendente') ? "green" : "red";
+	innerItalicText.appendChild(coloredInnerItalicText);
+	documento.appendChild(innerItalicText);
+	sortMessage = documento.textContent;
+	if (!stopPrint) {
+		deleteSetTimers();
+		animateSortMessage();
+	}
+}
+
+function animateSortMessage() {
+	var documentoTexto = document.getElementById("orderMessageDiv");
+	documentoTexto.style.animation = "";
+	documentoTexto.style.opacity = '0';
+	deleteSetTimers();
+	documentoTexto.style.animation = "smoothOpacity 0.35s forwards";
+	setTimeout(function () {
+		documentoTexto.style.opacity = "1";
+		documentoTexto.style.animation = "";
+	}, 350);
+	setTimeout(function () {
+		documentoTexto.style.opacity = "0";
+		documentoTexto.style.animation = "smoothOpacity 0.35s";
+		documentoTexto.style.animationDirection = "reverse";
+	}, 1300);
+	setTimeout(function() {
+		documentoTexto.style.animation = "";
+	}, 1650);
+}
+
+function deleteSetTimers() {
+	var borrarTimeouts = window.setTimeout(function() {}, 0);
+	while (borrarTimeouts--) {
+		window.clearTimeout(borrarTimeouts);
+	}
+}
+
+function animationWipe(documento, clearOpacity) {
+	documento.style.animation = "";
+	if (clearOpacity) documento.style.opacity = '0';
+}
+
 function sortPokeArrayByNum() {
-	pokeArray.sort();
+	pokeArray.sort(function(a,b) {
+		return a.num > b.num ? 1 : -1;
+	});
 }
 
 function sortPokeArrayByName() {
 	pokeArray.sort(function(a,b) {
-		return a[1] > b[1];
+		return a.name > b.name ? 1 : -1;
 	});
 }
 
 function sortPokeArrayByWeight() {
 	pokeArray.sort(function(a,b) {
-		return parseFloat(a[3]) > parseFloat(b[3]);
+		return parseFloat(a.weight) - parseFloat(b.weight);
 	});
 }
 
@@ -189,7 +255,7 @@ function secuenciaPrintList(elemento, tabla) {
 	var celdaWeight = nuevaLinea.insertCell();
 
 	var pokeNum = document.createElement("pre");
-	var pokeName = document.createElement("pre");
+	var pokeName = document.createElement("pre"); 	
 	var pokeImg = document.createElement("img");
 	var pokeWeight = document.createElement("pre");
 
@@ -199,14 +265,15 @@ function secuenciaPrintList(elemento, tabla) {
 		pokeImg = document.createElement("pre");
 		pokeImg.innerHTML = "Img. Pokémon";
 		pokeWeight.innerHTML = "Peso Pokémon";
-		celdaNum.onclick = function() {sortTable('num', elemento)};
-		celdaName.onclick = function() {sortTable('nam', elemento)};
-		celdaWeight.onclick = function() {sortTable('wgt', elemento)};
+		celdaNum.style = celdaName.style = celdaImg.style = celdaWeight.style = 'filter: invert(15%);'
+		celdaNum.onclick = function() {sortTable('num', false, elemento)};
+		celdaName.onclick = function() {sortTable('nam', false, elemento)};
+		celdaWeight.onclick = function() {sortTable('wgt', false, elemento)};
 	} else {
-		pokeNum.innerHTML = elemento[0];
-		pokeName.innerHTML = elemento[1];
-		pokeImg.src = elemento[2];
-		pokeWeight.innerHTML = elemento[3];
+		pokeNum.innerHTML = elemento.num;
+		pokeName.innerHTML = elemento.name;
+		pokeImg.src = elemento.img;
+		pokeWeight.innerHTML = elemento.weight;
 	}
 
 	celdaNum.appendChild(pokeNum);
@@ -241,20 +308,17 @@ function searchBarInteraction(option) {
 function calcMitjana() {
 	let sumaTotal = 0;
 	if (pokeArray.length != 0) {
-		for (let i = 0; i < pokeArray.length; i++) {
-			sumaTotal += parseFloat(pokeArray[i][3]);
-		}
-		showPromptMessage("La media de peso actual es de " + (sumaTotal/pokeArray.length).toFixed(2) + "kg.");
+		pokeArray.forEach(item => { sumaTotal += parseFloat(item.weight)});
+		showPromptMessage("La media de peso actual es de " + (sumaTotal/pokeArray.length).toFixed(2) + "kg.", "promptMessage", "innerPromptMessage");
 	} else {
-		showPromptMessage("No hay Pokémon en la tabla.");
+		showPromptMessage("No hay Pokémon en la tabla.", "promptMessage", "innerPromptMessage");
 	}
 }
 
-function showPromptMessage(texto) {
-	hideChart('nosound');
+function showPromptMessage(texto, stringElemento, stringElementoTexto) {
 	playOpenMenu();
-	let elemento = document.getElementById("promptMessage");
-	let elementoTexto = document.getElementById("innerPromptMessage");
+	let elemento = document.getElementById(stringElemento);
+	let elementoTexto = document.getElementById(stringElementoTexto);
 
 	elemento.style.transform = "scale(1)";
 	elemento.style.animation = "smoothOpacity 0.15s forwards";
@@ -266,14 +330,14 @@ function showPromptMessage(texto) {
 		elementoTexto.style.transform = "scale(1)";
 		elemento.style.animation = "";
 		elementoTexto.style.animation = "";
-		elementoTexto.onclick = function() { hidePromptMessage() };
+		elementoTexto.onclick = function() { hidePromptMessage(stringElemento, stringElementoTexto) };
 	}, 450);
 }
 
-function hidePromptMessage() {
+function hidePromptMessage(stringElemento, stringElementoTexto) {
 	playConfirmSound();
-	let elemento = document.getElementById("promptMessage");
-	let elementoTexto = document.getElementById("innerPromptMessage");
+	let elemento = document.getElementById(stringElemento);
+	let elementoTexto = document.getElementById(stringElementoTexto);
 	elementoTexto.onclick = "";
 
 	elementoTexto.style.animation = "fullExpand 0.3s forwards";
