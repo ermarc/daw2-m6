@@ -8,10 +8,8 @@ function entrarPagina() {
     setTimeout( function() {
         var borrarDivBlanco = document.getElementById("primero");
         borrarDivBlanco.remove();
-    }, 550);
-    setTimeout( function() {
-        crearArchivos();
-    })
+    }, 400);
+    crearArchivos();
 }
 
 function crearArchivos() {
@@ -28,15 +26,22 @@ function crearArchivos() {
     document.getElementById("divButtons").appendChild(crearPenjatPrimitive);
 
     var crearPokeDex = document.createElement("button");
-    crearPokeDex.onclick =  function() { window.location.href = "Arrays/index.html"; };
+    crearPokeDex.onclick =  function() { createOldVersionAlert("Arrays/index.html") };
     crearPokeDex.textContent = "PokéDex experimental";
     crearPokeDex.id = "singleButton";
     document.getElementById("divButtons").appendChild(crearPokeDex);
+
+    var crearMapas = document.createElement("button");
+    crearMapas.onclick = function() { window.location.href = "Mapas/index.html" };
+    crearMapas.textContent = "Mapas";
+    crearMapas.id = "singleButton";
+    document.getElementById("divButtons").appendChild(crearMapas);
 }
 
 function createOldVersionAlert(respuesta) {
     playCautionSound();
     document.getElementById("caution").style.transform = "scale(1)";
+    document.getElementById("cautionConfirm").onclick = function() { window.location.href = respuesta; };
 }
 
 function closeCautionSplash() {

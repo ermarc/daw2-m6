@@ -1,0 +1,267 @@
+* {
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: white;
+}
+
+#background-image {
+    z-index: -1;
+    position: fixed;
+    width: 185%;
+    height: 185%;
+    background-image: url("img/background6.jpg");
+    background-size: cover;
+    filter: contrast(120%);
+}
+
+#firstGlance {
+    pointer-events: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+#mainScreen {
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#mainText {
+    pointer-events: none;
+    text-align: center;
+    color: white;
+    font-size: 6vh;
+    text-shadow: -0.5vh 0 black, 0 0.5vh black, 0.5vh 0 black, 0 -0.5vh black;
+    font-family: fuenteTitulo;
+    margin-top: -50vh;
+    animation: expandirTitulo 1.2s forwards, colorTitulo 1.5s linear forwards;
+    animation-iteration-count: 1, 3;
+}
+
+.cloud {
+    animation: movimientoNubes 4.5s infinite ease-in-out alternate-reverse;
+    position: absolute;
+    width: 100vh;
+    top: auto;
+    bottom: -30%;
+}
+
+.cloud:nth-of-type(1) {
+    margin-left: -10%;
+}
+
+.cloud:nth-of-type(2) {
+    bottom: -35%;
+    margin-left: 10%;
+}
+
+.cloud:nth-of-type(3) {
+    bottom: -27%;
+    margin-left: 30%;
+}
+
+.cloud:nth-of-type(4) {
+    bottom: -35%;
+    margin-left: 50%;
+}
+
+.cloud:nth-of-type(5) {
+    bottom: -40%;
+    margin-left: 70%;
+}
+
+.cloud:nth-of-type(6) {
+    bottom: -28%;
+    margin-left: 90%;
+}
+
+.cloud:nth-of-type(7) {
+    bottom: -88%;
+    margin-left: 90%;
+}
+
+.cloud:nth-of-type(8) {
+    bottom: -82%;
+    margin-left: 20%;
+}
+
+.cloud:nth-of-type(9) {
+    bottom: -93%;
+    margin-left: 40%;
+}
+
+.cloud:nth-of-type(10) {
+    bottom: -118%;
+    margin-left: -15%;
+}
+
+.cloud:nth-of-type(11) {
+    bottom: -133%;
+    margin-left: 10%;
+}
+
+.cloud:nth-of-type(12) {
+    bottom: -148%;
+    margin-left: 70%;
+}
+
+.cloud:nth-of-type(13) {
+    bottom: -173%;
+    margin-left: 10%;
+}
+
+.cloud:nth-of-type(14) {
+    bottom: -188%;
+    margin-left: 45%;
+}
+
+td {
+    border: 2px solid gray;
+    border-radius: 10px;
+    font-size: 22px;
+}
+
+#locationMapDiv {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+#botonInicio {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: expandirTitulo 1.2s forwards;
+}
+
+#mapButton {
+    pointer-events: all;
+    text-align: center;
+    border: 2vh solid gray;
+    background-color: darkgrey;
+    font-size: 4vh;
+    font-family: fuenteTitulo;
+    border-radius: 2vh;
+}
+
+b {
+    font-style: italic;
+}
+
+.leaflet-popup-content {
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#locationMapDiv {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.circle {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    background-image: url('circle.png');
+    text-align: center;
+}
+
+@font-face {
+    font-family: fuenteTitulo;
+    src: url("fuente.TTF");
+}
+
+@keyframes movimientoNubes {
+    from {
+        transform: translate(-12%, 0);
+    } to {
+        transform: translate(12%, 0);
+    }
+}
+
+@keyframes colorTitulo {
+    0% {
+        color: white;
+    }
+    10% {
+        color: red;
+    }
+    20% {
+        color: blue;
+    }
+    30% {
+        color: yellow;
+    }
+    40% {
+        color: green;
+    }
+    50% {
+        color: violet;
+    }
+    60% {
+        color: orange;
+    }
+    70% {
+        color: red;
+    }
+    80% {
+        color: blue;
+    }
+    90% {
+        color: yellow;
+    }
+    100% {
+        color: white;
+    }
+}
+
+@keyframes expandirTitulo {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bajadaGradual {
+    from {
+        transform: translate(0%, 0%);
+    } to {
+        transform: translate(0%, -400%);
+    }
+}
+
+@keyframes bajadaGradualFondo {
+    from {
+        transform: translate(0%, 0%);
+    } to {
+        transform: translate(0%, -85%);
+    }
+}
+
+@keyframes desvanecer {
+    0% {
+        opacity: 100%;
+    }
+    100% {
+        opacity: 0%;
+    }
+}

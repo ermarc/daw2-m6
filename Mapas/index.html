@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Prueba de mapas</title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="recursos/favicon.ico">
+        <link rel="stylesheet" href="recursos/styles.css" type="text/css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.1.0/dist/MarkerCluster.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.1.0/dist/MarkerCluster.Default.css"/>
+        <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+        <script src="https://unpkg.com/leaflet.markercluster@1.1.0/dist/leaflet.markercluster.js"></script>
+    </head>
+    <body>
+        <div id="background-image"></div>
+        <div id="firstGlance">
+            <div id="mainScreen">
+                <div id="mainText">
+                    <h2>WELCOME TO SATELLITE VIEW 2.0</h2>
+                </div>
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <img class="cloud" src="recursos/img/cloud.png">
+                <div id="botonInicio">
+                    <button id="mapButton" onclick="startBackView()">IR AL MAPA</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="locationMapDiv" style="pointer-events: none"></div>
+    
+        <!-- <button onclick="switchTable()">Generar/borrar tabla</button> -->
+        <script src="recursos/mapas.js"></script>
+    </body>
+</html>
+
